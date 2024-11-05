@@ -1,0 +1,29 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.Vault" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_night_color</item>
+        <item name="colorPrimaryVariant">@color/primary_night_dark_color</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary_night_color</item>
+        <item name="colorSecondaryVariant">@color/secondary_night_dark_color</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="gallery_viewpager_background">@color/black</item>
+        <item name="gallery_viewpager_buttons_background">@color/viewpager_buttons_bg_night</item>
+        <item name="gallery_viewpager_note_background">@color/viewpager_note_bg_night</item>
+        <item name="gallery_viewpager_buttons">@color/text_color_light</item>
+        <item name="toolbar_icon_tint">@color/white</item>
+        <item name="button_secondary">@color/secondary_night_color</item>
+        <item name="button_warning">@color/button_warning_color</item>
+        <item name="gallery_grid_stroke">@color/grid_stroke_color_night</item>
+        <item name="snackbarStyle">@style/MySnackBarStyle</item>
+    </style>
+
+    <style name="MySnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
+        <item name="android:background">@color/button_warning_color</item>
+    </style>
+</resources>
