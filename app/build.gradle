@@ -1,49 +1,57 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id 'com.android.application'
     id 'com.mikepenz.aboutlibraries.plugin'
 }
 
 android {
-    namespace 'com.example.vaultlockerapp'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.vaultlockerapp"
-        minSdk 24
+        applicationId "se.arctosoft.vault"
+        minSdk 28
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 30
+        versionName "1.11.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationIdSuffix '.dev'
+        }
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "Vault_${versionCode}_${defaultConfig.versionName}_${variant.buildType.name}.apk"
+            }
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-
     buildFeatures {
         viewBinding true
     }
-
     namespace 'se.arctosoft.vault'
 }
 
 dependencies {
-    implementation libs.appcompat
-    implementation libs.material
-    implementation libs.activity
-    implementation libs.constraintlayout
-    testImplementation libs.junit
-    androidTestImplementation libs.ext.junit
-    androidTestImplementation libs.espresso.core
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.6'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.security:security-crypto:1.0.0'
     implementation 'androidx.media3:media3-exoplayer:1.4.1'
     implementation 'androidx.media3:media3-ui:1.4.1'
@@ -52,7 +60,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
     implementation 'com.mikepenz:aboutlibraries-core-android:10.10.0'
-    implementation 'com.mikepenz:aboutlibraries:10.10.0'
+    implementation('com.mikepenz:aboutlibraries:10.10.0') {
+        exclude group: 'com.mikepenz', module: 'aboutlibraries-core'
+    }
 }
 
 aboutLibraries {
